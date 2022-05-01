@@ -53,4 +53,19 @@ public class OriginModel {
     public void setResidents(ArrayList<String> residents) {
         this.residents = residents;
     }
+
+    @Override
+    public String toString() {
+        return "OriginModel{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", dimension='" + dimension + '\'' +
+                ", residents=" + residents +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return true;
+    }
 }

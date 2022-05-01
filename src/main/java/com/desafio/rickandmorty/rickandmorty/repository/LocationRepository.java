@@ -5,7 +5,7 @@ import com.desafio.rickandmorty.rickandmorty.model.OriginModel;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Created by Thiran0x on 01-05-2022.
+ * Created by Matias Arce on 01-05-2022.
  */
 public interface LocationRepository {
     public ResponseEntity<OriginModel> getLocationInfo(String url) throws RepositoryException;

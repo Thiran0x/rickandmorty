@@ -23,6 +23,9 @@ public class CharacterAndLocationInfoServiceImpl implements CharacterAndLocation
     private static CharacterRepositoryImpl characterRepositoryImpl;
     private static LocationRepositoryImpl locationRepositoryImpl;
 
+    public CharacterAndLocationInfoServiceImpl() {
+    }
+
     @Autowired
     public CharacterAndLocationInfoServiceImpl(CharacterRepositoryImpl characterRepositoryImpl, LocationRepositoryImpl locationRepositoryImpl) {
         this.characterRepositoryImpl = characterRepositoryImpl;
