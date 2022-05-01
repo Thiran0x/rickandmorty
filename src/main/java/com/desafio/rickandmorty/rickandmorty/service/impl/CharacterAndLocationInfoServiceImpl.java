@@ -3,8 +3,8 @@ package com.desafio.rickandmorty.rickandmorty.service.impl;
 import com.desafio.rickandmorty.rickandmorty.exception.RepositoryException;
 import com.desafio.rickandmorty.rickandmorty.model.OriginModel;
 import com.desafio.rickandmorty.rickandmorty.model.RootModel;
-import com.desafio.rickandmorty.rickandmorty.repository.CharacterRepository;
-import com.desafio.rickandmorty.rickandmorty.repository.LocationRepository;
+import com.desafio.rickandmorty.rickandmorty.repository.impl.CharacterRepositoryImpl;
+import com.desafio.rickandmorty.rickandmorty.repository.impl.LocationRepositoryImpl;
 import com.desafio.rickandmorty.rickandmorty.service.CharacterAndLocationInfoService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,13 +20,13 @@ import org.springframework.stereotype.Service;
 public class CharacterAndLocationInfoServiceImpl implements CharacterAndLocationInfoService {
 
     private static final Log LOGGER = LogFactory.getLog(CharacterAndLocationInfoServiceImpl.class);
-    private static CharacterRepository characterRepository;
-    private static LocationRepository locationRepository;
+    private static CharacterRepositoryImpl characterRepositoryImpl;
+    private static LocationRepositoryImpl locationRepositoryImpl;
 
     @Autowired
-    public CharacterAndLocationInfoServiceImpl(CharacterRepository characterRepository,LocationRepository locationRepository) {
-        this.characterRepository = characterRepository;
-        this.locationRepository = locationRepository;
+    public CharacterAndLocationInfoServiceImpl(CharacterRepositoryImpl characterRepositoryImpl, LocationRepositoryImpl locationRepositoryImpl) {
+        this.characterRepositoryImpl = characterRepositoryImpl;
+        this.locationRepositoryImpl = locationRepositoryImpl;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class CharacterAndLocationInfoServiceImpl implements CharacterAndLocation
         LOGGER.info("Access to [CharacterAndLocationInfoServiceImpl.findCharacterByID] with [id:"+id+"]");
         try{
             LOGGER.info("Consulting service [CharacterAndLocationInfoServiceImpl.findCharacterByID] with [id:"+id+"]");
-            ResponseEntity<RootModel> responseEntity= characterRepository.getCharacterInfo(id);
+            ResponseEntity<RootModel> responseEntity= characterRepositoryImpl.getCharacterInfo(id);
             LOGGER.info("[CharacterAndLocationInfoServiceImpl.findCharacterByID] with [id:"+id+"][RESULTADO|"+responseEntity.getStatusCode()+"]");
 
             return new ResponseEntity<RootModel>(responseEntity.getBody(), responseEntity.getStatusCode());
@@ -53,7 +53,7 @@ public class CharacterAndLocationInfoServiceImpl implements CharacterAndLocation
         LOGGER.info("Access to [CharacterAndLocationInfoServiceImpl.findLocation] with [ENDPOINT:"+url+"]");
         try{
             LOGGER.info("Consulting service [CharacterAndLocationInfoServiceImpl.findLocation] with [ENDPOINT:"+url+"]");
-            ResponseEntity<OriginModel> responseEntity= locationRepository.getLocationInfo(url);
+            ResponseEntity<OriginModel> responseEntity= locationRepositoryImpl.getLocationInfo(url);
             LOGGER.info("[CharacterAndLocationInfoServiceImpl.findLocation] with [ENDPOINT:"+url+"][RESULTADO|"+responseEntity.getStatusCode()+"]");
 
             return new ResponseEntity<OriginModel>(responseEntity.getBody(), responseEntity.getStatusCode());
